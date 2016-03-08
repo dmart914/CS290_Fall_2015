@@ -1,0 +1,60 @@
+<h2>Dave's Workout App</h2>
+
+<h4>Create a new workout</h4>
+<div class="row">
+	<form class="form-inline" action="/new-workout" method="POST" id="new_workout">
+		<div class="form-group">
+			<label class="sr-only" for="workout_name">Name</label>
+			<input type="text" class="form-control" id="new_workout_name" placeholder="Name">
+		</div>
+		<div class="form-group">
+			<label class="sr-only" for="workout_reps">Reps</label>
+			<input type="number" class="form-control" id="new_workout_reps" placeholder="Rep">
+		</div>
+		<div class="form-group">
+			<label class="sr-only" for="workout_weight">Weight</label>
+			<input type="number" class="form-control" id="new_workout_weight" placeholder="Weight">
+		</div>
+		<div class="form-group">
+			<label class="sr-only" for="workout_date">Date</label>
+			<input type="date" class="form-control" id="new_workout_date" placeholder="Date">
+		</div>
+		<div class="checkbox">
+			&nbsp;&nbsp;
+			<label for="workout_pounds">
+				<input type="checkbox" id="new_workout_pounds"> Pounds?
+			</label>
+		</div>
+		<br><br>
+		<button type="submit" class="btn btn-primary btn-block" id="form_button">Add workout</button>
+	</form>
+</div>
+<br><hr><br>
+
+<h4>Workouts</h4>
+<table class="table" id="workouts_table">
+	<tbody id="workouts_table_body">
+		<tr>
+			<th>Name</th>
+			<th>Reps</th>
+			<th>Weight</th>
+			<th>Date</th>
+			<th>Pounds/Kilo.</th>
+			<th>Actions</th>
+		</tr>
+		{{#if results}}
+			{{#each results}}
+				<tr id="workout_{{this.id}}">
+					<td id="workout_{{this.id}}_name">{{this.name}}</td>
+					<td id="workout_{{this.id}}_reps">{{this.reps}}</td>
+					<td id="workout_{{this.id}}_weight">{{this.weight}}</td>
+					<td id="workout_{{this.id}}_date">{{this.date}}</td>
+					<td id="workout_{{this.id}}_pounds">{{this.lbs}}</td>
+					<td><a class="btn btn-info btn-sm workout_edit" onclick="workout_edit_form({{this.id}});">Edit</a>&nbsp;&nbsp;<a class="btn btn-danger btn-sm" onclick="workout_delete({{this.id}});">Delete</a></td>
+				</tr>
+			{{/each}}
+		{{/if}}
+	</tbody>
+</table>
+
+<script src="/scripts.js"></script>
